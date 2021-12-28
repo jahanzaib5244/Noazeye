@@ -1,0 +1,1 @@
+export const URL="https://www.attendezz.com/noazeye/dashboard/api/index.php?" 
