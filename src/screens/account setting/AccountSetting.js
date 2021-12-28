@@ -14,11 +14,11 @@ import {SuccessAlerts} from '../../component/Alerts'
 import {UpdateProfileApi} from '../../Store/actions/AuthActions'
  
 const validationschema = Yup.object().shape({
-    Phone: Yup.number().label("Phone"),
+    Phone: Yup.number().required().label("Phone"),
     firstName: Yup.string().required().trim().label("First Name"),
     lastName: Yup.string().required().trim().label("Last Name"),
-    Address: Yup.string().trim().label("Adress"),
-    DOB: Yup.string().label('Date Of Birth')
+    Address: Yup.string().required().trim().label("Adress"),
+    DOB: Yup.string().required().label('Date Of Birth')
 
 });
 
@@ -82,6 +82,7 @@ export default function AccountSetting() {
                                     onchange={handleChange("Phone")}
                                     inputstyle={AccountSettingStyle.inputfields}
                                     name='Phone'
+                                    
                                     blur={() => setFieldTouched("Phone")}
                                     placeholder='Phone...'
                                 />

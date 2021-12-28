@@ -10,8 +10,8 @@ export const Colors={
     white:'#FFFFFF',
     lightBlack:'#2E2F33',
     profileCard:'#2F3541',
-    success:'#20bf6b'
-    
+    success:'#20bf6b',
+    drawer:'rgba(255,192,0,0.4)'
 
 }
 export const font={

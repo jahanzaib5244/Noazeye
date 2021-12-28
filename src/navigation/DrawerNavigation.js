@@ -21,7 +21,7 @@ export default function DrawerNavigation() {
       />}
 
       screenOptions={{
-        drawerActiveBackgroundColor: Colors.primary,
+        drawerActiveBackgroundColor: Colors.drawer,
         drawerActiveTintColor: '#fff',
         drawerInactiveTintColor: Colors.white,
         headerStyle: {
