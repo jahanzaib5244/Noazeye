@@ -55,11 +55,9 @@ export const SingupStyle = StyleSheet.create({
         width: '46%'
     },
     Pass: {
-        // marginTop: 20,
         width: '46%'
     },
     CPass: {
-        // marginTop: 20,
         width: '46%'
 
     },
@@ -85,6 +83,6 @@ export const SingupStyle = StyleSheet.create({
         marginTop: 0
     },
     drop:{
-        marginTop:0,
+        marginTop:10,
     }
 })

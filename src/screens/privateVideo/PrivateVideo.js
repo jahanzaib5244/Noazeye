@@ -7,6 +7,7 @@ import { useIsFocused, useRoute } from '@react-navigation/native';
 import Share from 'react-native-share';
 import VideoesComponent from '../../component/VideoesComponent'
 import { useDispatch } from 'react-redux';
+import { PrivateVideoApi } from '../../Store/actions/AuthActions';
 
 const { height, width } = Dimensions.get('window')
 
@@ -33,11 +34,9 @@ export default function PrivateVideo({ navigation }) {
         }
 
     };
-
-    const ctaLogout = () => {
-        dispatch(dologout())
-    }
-
+useEffect(() => {
+   dispatch(PrivateVideoApi())
+}, [])
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center' }}>
             <VideoesComponent fun={(item) => fun(item)} />

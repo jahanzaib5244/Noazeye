@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FORGETPASSWORD, LOGIN, LOGOUT, RETREIVEDUSER, SEARCH, INCOME, EXPENSE, EDITINCOME, EDITEXPENSE, DECEXPENSE, ASEEXPENSE, DECINCOME, ASEINCOME, ALLINCOME, ALLEXPENSE, COMPANIES } from '../States';
+import { FORGETPASSWORD, LOGIN, LOGOUT, RETREIVEDUSER,PUBLICVIDEO, COMPANIES,PRIVATEVIDEO } from '../States';
 import axios from 'axios';
 import { URL } from '../../config/URL'
 
@@ -84,8 +84,41 @@ export const dologout = () => async (dispatch) => {
         })
     } catch (error) {
         console.log(error)
-    }finally{
-        setloading(false)
+    }
+}
+
+
+export const PublicVideoApi=()=>async(dispatch)=>{
+    try {
+        console.log('public calling')
+        
+        let res =await axios.get(`${URL}action=video_list&type=public`)
+        console.log(res.data)
+        if(res.data.sts == "success"){
+         let publicVideo=  res.data.videos_list
+         dispatch({
+             type:PUBLICVIDEO,
+             payload:publicVideo
+         })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const PrivateVideoApi=()=>async(dispatch)=>{
+    try {
+        
+        let res =await axios.get(`${URL}action=video_list&type=private`)
+        console.log(res.data)
+        if(res.data.sts == "success"){
+         let privateVideo=  res.data.videos_list
+         dispatch({
+             type:PRIVATEVIDEO,
+             payload:privateVideo
+         })
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
 

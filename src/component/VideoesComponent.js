@@ -5,8 +5,9 @@ import VideoPlayer from 'react-native-video-player';
 import { SwiperFlatList } from 'react-native-swiper-flatlist'
 import {size} from '../config/Utils'
 import { Videoes } from './Videoes';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function VideoesComponent({ fun }) {
+export default function VideoesComponent({ fun ,navigation}) {
     const videoRef = useRef(null)
     const item = ({ item, index }) => {
           
@@ -18,8 +19,8 @@ export default function VideoesComponent({ fun }) {
                     video={{ uri: item.sources }}
                     // videoHeight={height}
                     pauseOnPress={true}
-                    disableFullscreen={true}
-                    resizeMode='contain'
+                    // disableFullscreen={false}
+                    resizeMode='cover'
                     showDuration={true}
                     showOnStart={true}
                     seekColor='#FFaFFd'
@@ -32,10 +33,14 @@ export default function VideoesComponent({ fun }) {
                         <Text style={{ color: 'white', marginBottom: 3, fontSize: 16, fontWeight: '700' }}>{item.title}</Text>
                         <Text numberOfLines={5} style={{ color: 'white', width: '100%', }}>{item.description}</Text>
                     </View>
-                    <View style={{ flex: 0.5, flexDirection: 'row', paddingLeft: 5, justifyContent: 'flex-end', paddingRight: 18, alignItems: 'center' }}>
+                    <View style={{ flex: 0.5, flexDirection: 'column', paddingLeft: 5, paddingRight: 18, alignItems: 'center' }}>
                         <TouchableOpacity onPress={(item) => fun(item)} style={{ justifyContent: 'flex-end', }}>
                             <Image style={{ width: 35, height: 35, tintColor: 'rgba(256,256,256,0.9)' }} source={require('../assets/share.png')} />
                             <Text style={{ color: 'white', fontWeight: '700', marginTop: 3 }}>Share</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('fullScreen',{item, refrence : videoRef})} style={{ marginTop:16,padding:8 }}>
+                            <Image style={{ width: 15, height: 15, tintColor: 'rgba(256,256,256,0.9)' }} source={require('../assets/share.png')} />
+                            {/* <Text style={{ color: 'white', fontWeight: '700', marginTop: 3 }}>Share</Text> */}
                         </TouchableOpacity>
                     </View>
                 </View>

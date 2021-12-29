@@ -54,7 +54,7 @@ const CtaUpdatePassword=(val)=>{
                                 blur={() => setFieldTouched("oldPassword")}
                                 onchange={handleChange("oldPassword")}
                             />
-                            {!!touched.oldPassword && <Text style={UpdatePasswordStyle.error}>{errors.oldPassword}</Text>}
+                            {touched.oldPassword && errors.oldPassword ? <Text style={UpdatePasswordStyle.error}>{errors.oldPassword}</Text> :null}
                             <Passwordinput
                                 name='New Password'
                                 placeholder="Enter Your New Password..."
@@ -69,8 +69,8 @@ const CtaUpdatePassword=(val)=>{
                                 blur={() => setFieldTouched("ConfirmPassword")}
                                 onchange={handleChange("ConfirmPassword")}
                             />
-                             {!!touched.ConfirmPassword && <Text style={UpdatePasswordStyle.error}>{errors.ConfirmPassword}</Text>}
-                            {invalid &&  <Text style={UpdatePasswordStyle.error}>{invalid}</Text> }
+                             {touched.ConfirmPassword && errors.ConfirmPassword ? <Text style={UpdatePasswordStyle.error}>{errors.ConfirmPassword}</Text> : null}
+                            {invalid !== null ? <Text style={UpdatePasswordStyle.error}>{invalid}</Text> :null }
                             {loading ?
                                 <LoadingButton BTstyle={UpdatePasswordStyle.Btn} />
                                 :

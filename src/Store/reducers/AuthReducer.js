@@ -1,4 +1,4 @@
-import {COMPANIES, FORGETPASSWORD, LOGIN, LOGOUT, RETREIVEDUSER, } from "../States";
+import {COMPANIES, FORGETPASSWORD, LOGIN, LOGOUT, PRIVATEVIDEO, PUBLICVIDEO, RETREIVEDUSER, } from "../States";
 
 
 
@@ -26,6 +26,18 @@ export default function AuthReducer(state = initialState, action) {
             return {
                 ...state,
                 Companies: action.payload
+            }
+        }
+        case PUBLICVIDEO:{
+            return{
+                ...state,
+                PublicVideo:action.payload
+            }
+        }
+        case PRIVATEVIDEO:{
+            return{
+                ...state,
+                PrivateVideo:action.payload
             }
         }
 

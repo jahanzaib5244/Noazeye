@@ -34,6 +34,20 @@ dispatch(dologout())
                 </View>
             </DrawerContentScrollView>
             <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: '#ccc' }}>
+            <TouchableOpacity onPress={() => { }} style={{ paddingVertical: 15 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Image style={{ width: 22, height: 22, tintColor: Colors.white }} source={require('../assets/rate.png')} />
+                        <Text
+                            style={{
+                                fontSize: 15,
+                                fontFamily: 'Roboto-Medium',
+                                marginLeft: 10,
+                                color: 'white'
+                            }}>
+                            Rate us
+                        </Text>
+                    </View>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => { }} style={{ paddingVertical: 15 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Image style={{ width: 22, height: 22, tintColor: Colors.white }} source={require('../assets/share.png')} />
@@ -44,7 +58,7 @@ dispatch(dologout())
                                 marginLeft: 10,
                                 color: 'white'
                             }}>
-                            Tell a Friend
+                            Share With Friend
                         </Text>
                     </View>
                 </TouchableOpacity>

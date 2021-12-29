@@ -1,23 +1,17 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, StatusBar, Image, SafeAreaView, ScrollVie, ToastAndroid } from 'react-native'
-import { Videoes } from '../../component/Videoes'
-import { SwiperFlatList } from 'react-native-swiper-flatlist'
-import {useSelector} from 'react-redux'
-import VideoPlayer from 'react-native-video-player';
+import {useSelector,useDispatch} from 'react-redux'
 import { useIsFocused, useRoute } from '@react-navigation/native';
 import Share from 'react-native-share';
-import { useDispatch } from 'react-redux'
+import { PublicVideoApi } from '../../Store/actions/AuthActions'
 
 import VideoesComponent from '../../component/VideoesComponent'
 
 
 export default function PublicVideo({ navigation }) {
     const publicVideo = useSelector(state => state.AuthReducer.PublicVideo)
-
-    const isFocused = useIsFocused('Private');
     const route = useRoute().name;
 const dispatch = useDispatch()
-    console.log(isFocused)
 
     const fun = async (item) => {
         // console.log(item)
@@ -35,15 +29,15 @@ const dispatch = useDispatch()
         }
 
     };
-    const ctaLogout=()=>{
-        dispatch(dologout())
-       
-    }
-
+    useEffect(() => {
+        console.log('public')
+       dispatch(PublicVideoApi())
+    }, [route])
+    
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center' }}>
             {/* // video player from component */}
-            <VideoesComponent  fun={(item)=>fun(item)} />
+            <VideoesComponent  fun={(item)=>fun(item)} navigation={navigation} />
             {/* // Header of video player */}
             <View style={{ flexDirection: 'row', position: 'absolute', top: 25, width: '100%' }}>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start', flexDirection: 'row' }}>

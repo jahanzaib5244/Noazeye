@@ -72,13 +72,7 @@ headerTitle:'Account Setting',
         ),
       }} name="AccountSetting" component={AccountSetting}
       />
-      <Drawer.Screen options={{
-
-        drawerIcon: ({ color, size }) => (
-          <Image style={{ width: size, height: size, tintColor: color }} source={require('../assets/rate.png')} />
-        ),
-      }} name="Rating" component={StackNavigation}
-      />
+    
 
     </Drawer.Navigator>
   );

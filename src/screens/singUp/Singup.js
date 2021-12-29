@@ -30,7 +30,7 @@ export default function Singup({ navigation }) {
     const [selected, setselected] = useState('')
     const [getCompanies, setgetCompanies] = useState(false)
     const [loading, setloading] = useState(false)
-    const [companyerror, setcompanyerror] = useState('')
+    const [companyerror, setcompanyerror] = useState(null)
     console.log(selected)
     const SelectedItem = (e) => {
         console.log('clicked', e)
@@ -86,8 +86,8 @@ export default function Singup({ navigation }) {
                                     placeholder='Last Name...'
                                 />
                             </View>
-                            {touched.firstName !== '' ? <Text style={SingupStyle.error}>{errors.firstName}</Text> : null}
-                            {touched.lastName !== '' ? <Text style={SingupStyle.error}>{errors.lastName}</Text> : null}
+                            {touched.firstName && errors.firstName ? <Text style={SingupStyle.error}>{errors.firstName}</Text> : null}
+                            {touched.lastName && errors.lastName ? <Text style={SingupStyle.error}>{errors.lastName}</Text> : null}
 
                             {/* {dropdown from component} */}
                             {getCompanies ?
@@ -96,7 +96,7 @@ export default function Singup({ navigation }) {
 
                                 <Dropdown customstyle={SingupStyle.drop} select={(e) => SelectedItem(e)} />
                             }
-                          <Text style={SingupStyle.error}>{companyerror}</Text>
+                            {companyerror !== null ? <Text style={SingupStyle.error}>{companyerror}</Text> : null}
                             <Input
                                 onchange={handleChange("Email")}
                                 inputstyle={SingupStyle.email}
@@ -104,7 +104,7 @@ export default function Singup({ navigation }) {
                                 blur={() => setFieldTouched("Email")}
                                 placeholder='Email...'
                             />
-                            {!!touched.Email && <Text style={SingupStyle.error}>{errors.Email}</Text>}
+                            {touched.Email && errors.Email ? <Text style={SingupStyle.error}>{errors.Email}</Text> :null}
                             <View style={SingupStyle.username}>
                                 <Passwordinput
                                     onchange={handleChange("Password")}
@@ -123,7 +123,7 @@ export default function Singup({ navigation }) {
                                 />
 
                             </View>
-                            {!!touched.ConfirmPassword && <Text style={SingupStyle.error}>{errors.ConfirmPassword}</Text>}
+                            {touched.ConfirmPassword && errors.ConfirmPassword ? <Text style={SingupStyle.error}>{errors.ConfirmPassword}</Text> : null }
                             <View style={SingupStyle.username}>
                                 <Input
                                     onchange={handleChange("position")}
@@ -141,9 +141,9 @@ export default function Singup({ navigation }) {
                                     placeholder='User Name...'
                                 />
                             </View>
-                            {!!touched.userName && <Text style={SingupStyle.error}>{errors.userName}</Text>}
+                            {touched.userName && errors.userName ? <Text style={SingupStyle.error}>{errors.userName}</Text> : null}
 
-                            {!!touched.position && <Text style={SingupStyle.error}>{errors.position}</Text>}
+                            {touched.position && errors.position ? <Text style={SingupStyle.error}>{errors.position}</Text> : null}
                             {/* // button */}
                             {loading ?
                                 <LoadingButton BTstyle={SingupStyle.btn} />

@@ -38,7 +38,7 @@ export default function Login({ navigation }) {
                                 name='Email'
                                 blur={() => setFieldTouched("email")}
                             />
-                            {touched.email && <Text style={LoginStyle.error}>{errors.email}</Text>}
+                            { errors.email && touched.email ? <Text style={LoginStyle.error}>{errors.email}</Text>:null}
                             <Passwordinput
                                 inputstyle={LoginStyle.inputfield}
                                 placeholder='Enter Your Password...'
@@ -46,7 +46,7 @@ export default function Login({ navigation }) {
                                 onchange={handleChange("password")}
                                 blur={() => setFieldTouched("password")}
                             />
-                            {touched.password && <Text style={LoginStyle.error}>{errors.password}</Text>}
+                            {errors.password && touched.password ? <Text style={LoginStyle.error}>{errors.password}</Text> : null}
                             {isinvalid && <Text style={LoginStyle.error}>{isinvalid}</Text>}
                             <View style={LoginStyle.forget}>
                                 <TouchableOpacity style={LoginStyle.forgetBtn} onPress={() => navigation.navigate('ForgetPassword')} >
