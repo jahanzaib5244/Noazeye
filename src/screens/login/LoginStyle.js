@@ -4,7 +4,7 @@ import { Colors, font, size } from '../../config/Utils';
 export const LoginStyle = StyleSheet.create({
     root: {
         flexGrow: 1,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.primary,
     },
     logo: {
         flex: 1,
@@ -16,11 +16,13 @@ export const LoginStyle = StyleSheet.create({
         flex: 2,
         minHeight: size.height70,
         backgroundColor: Colors.white,
-        borderTopLeftRadius: 80
+        borderTopLeftRadius: 80,
+        elevation:4
     },
     image: {
-        height: '33%',
-        width: '60%'
+        height: '30%',
+        width: '80%',
+        resizeMode:'contain'
     },
     loginText: {
         fontSize: font.h1,

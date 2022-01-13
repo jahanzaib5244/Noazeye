@@ -5,15 +5,16 @@ import { Colors, font, size } from '../../config/Utils';
 export const ProfileStyle = StyleSheet.create({
     root: {
         flexGrow: 1,
-        backgroundColor: Colors.black
+        backgroundColor: Colors.primary
     },
     upperContainer: {
         flex: 1,
         minHeight: size.height30,
-        backgroundColor: Colors.black
+      
     },
     lowerContainer: {
         flex: 3,
+        elevation:4,
         minHeight: size.height70,
         backgroundColor: Colors.white,
         borderTopLeftRadius:80,
@@ -30,7 +31,7 @@ export const ProfileStyle = StyleSheet.create({
         borderRadius: 20,
     },
     cardText: {
-        color: Colors.white,
+        color: Colors.black,
         fontSize: 22,
         alignSelf:'center',
         marginTop:6,
@@ -40,10 +41,19 @@ export const ProfileStyle = StyleSheet.create({
     cardImage:{
         height:120,
         width:120,
-        borderRadius:120/2,
+        borderRadius: 120/2,
+     
+    },
+    cardImageContainer:{
+        height:120,
+        marginTop:24,
+        width:120,
+        overflow:'hidden',
+        borderRadius: 120/2,
         alignSelf:'center',
-        backgroundColor:'red',
-        marginTop:25
+    backgroundColor:'black',
+    alignItems:'center',
+    justifyContent:'center',
     },
     cardText2:{
         color: 'gray',

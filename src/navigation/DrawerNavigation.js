@@ -21,15 +21,21 @@ export default function DrawerNavigation() {
       />}
 
       screenOptions={{
+        swipeEnabled:false,
+        gestureEnabled:false,
+        drawerLockMode: 'locked-open',
         drawerActiveBackgroundColor: Colors.drawer,
-        drawerActiveTintColor: '#fff',
-        drawerInactiveTintColor: Colors.white,
+        drawerActiveTintColor: Colors.white,
+        drawerInactiveTintColor: Colors.black,
         headerStyle: {
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.primary,
+          elevation:0
         },
-        headerTintColor: Colors.white,
+        headerTintColor: Colors.black,
         headerTitleAlign: 'center',
+
         drawerLabelStyle: {
+          fontWeight: '600',
           marginLeft: -15,
           fontFamily: 'Roboto-Medium',
           fontSize: 15,
@@ -41,7 +47,7 @@ export default function DrawerNavigation() {
       <Drawer.Screen options={{
         headerShown: false,
         drawerLabel: 'Home',
-        headerTitle:'Home',
+        headerTitle: 'Home',
         drawerIcon: ({ color, size }) => (
           <Image style={{ width: size, height: size, tintColor: color }} source={require('../assets/home.png')}
           />
@@ -50,29 +56,30 @@ export default function DrawerNavigation() {
       />
       <Drawer.Screen options={{
         drawerLabel: 'Profile',
-        headerTitle:'Profile',
+        headerTitle: 'Profile',
         drawerIcon: ({ color, size }) => (
+
           <Image style={{ width: size, height: size, tintColor: color }} source={require('../assets/profile.png')} />
         ),
       }} name="Profile" component={Profile}
       />
       <Drawer.Screen options={{
         drawerLabel: 'Change Password',
-        headerTitle:'Change Password',
+        headerTitle: 'Change Password',
         drawerIcon: ({ color, size }) => (
           <Image style={{ width: size, height: size, tintColor: color }} source={require('../assets/password.png')} />
         ),
       }} name="UpdatePassword" component={UpdatePassword}
       />
       <Drawer.Screen options={{
-drawerLabel:'Account Setting',
-headerTitle:'Account Setting',
+        drawerLabel: 'Account Setting',
+        headerTitle: 'Account Setting',
         drawerIcon: ({ color, size }) => (
           <Image style={{ width: size, height: size, tintColor: color }} source={require('../assets/updateProfile.png')} />
         ),
       }} name="AccountSetting" component={AccountSetting}
       />
-    
+
 
     </Drawer.Navigator>
   );

@@ -3,18 +3,19 @@ import { View, TextInput, StyleSheet, Text } from 'react-native'
 
 import { Colors, font } from '../config/Utils'
 
-export default function Input({ name, placeholder, inputstyle, onchange, blur ,...otherProps }) {
+export default function Input({ name, placeholder, inputstyle, onchange, blur, ...otherProps }) {
     return (
         <View style={[styles.Input, inputstyle]}>
             <Text style={styles.text}>{name}</Text>
             <TextInput
-                 {...otherProps}
+                {...otherProps}
                 style={styles.textinput}
                 placeholder={placeholder}
                 onChangeText={(e) => onchange(e)}
                 onBlur={(e) => blur(e)}
                 autoCapitalize="none"
                 numberOfLines={1}
+                placeholderTextColor="gray" 
             />
         </View>
     )
@@ -24,7 +25,8 @@ const styles = StyleSheet.create({
     Input: {
 
         backgroundColor: Colors.white,
-        elevation: 2,
+        elevation: 3,
+        shadowColor:Colors.primary,
         borderRadius: 10,
         padding: 10,
     },
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
         letterSpacing: 1
     },
     textinput: {
-
+        color: Colors.black,
         marginVertical: 5,
         marginHorizontal: 5,
         fontSize: font.h3,

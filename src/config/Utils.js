@@ -1,18 +1,20 @@
 import { Dimensions } from "react-native"
 
 const {height,width} = Dimensions.get('window')
+const darkthem=true
 
 export const Colors={
-    primary :'#FFC000',
-    black:'#000000',
-    secondary:'#000000',
-    danger:"#FF6666",
-    white:'#FFFFFF',
-    lightBlack:'#2E2F33',
-    profileCard:'#2F3541',
-    success:'#20bf6b',
-    drawer:'rgba(255,192,0,0.4)'
-
+    primary : darkthem ?'#F5F5F5': '#121212',
+    black: darkthem ?'#000000': '#fff',
+    secondary: darkthem ?'#000000': '#fff',
+    danger: "#FF6666",
+    white: darkthem ?'#FFFFFF': '#1f1f1f',
+    lightBlack: darkthem ?'#2E2F33': '#fff',
+    profileCard: darkthem ?'#2F3541': '#fff', 
+    success: darkthem ?'#20bf6b': '#fff',
+    drawer: darkthem ?'#E6AC00': '#fff'
+    // #43445B
+//#2B2A3A
 }
 export const font={
     h1:30,
@@ -42,4 +44,5 @@ export const size={
        width80:width*0.8,
        width90:width*0.9,
        width100:width,
+       width95:width *0.95,
 }

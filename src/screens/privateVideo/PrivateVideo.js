@@ -2,27 +2,32 @@ import React, { useRef, useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, StatusBar, Image, SafeAreaView, ScrollVie, ToastAndroid } from 'react-native'
 import { Videoes } from '../../component/Videoes'
 import { SwiperFlatList } from 'react-native-swiper-flatlist'
-import VideoPlayer from 'react-native-video-player';
+
 import { useIsFocused, useRoute } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import Share from 'react-native-share';
-import VideoesComponent from '../../component/VideoesComponent'
+
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { PrivateVideoApi } from '../../Store/actions/AuthActions';
 
-const { height, width } = Dimensions.get('window')
+import VideoPlayer from '../../component/Videodatafirst';
 
-export default function PrivateVideo({ navigation }) {
+import { PrivateVideoStyle } from './PrivateVideoStyle';
+import { size } from '../../config/Utils';
 
-    const route = useRoute().name;
 
-    const dispatch = useDispatch()
-    //   console.log(isFocused)
-    const fun = async (item) => {
+export default function PrivateVideo({ navigation, route }) {
+
+    const { item,thumb } = (route.params)
+    const [fullScreen, setfullScreen] = useState(false)
+    // when user click on video player share button 
+    const sharing = async (item) => {
         console.log(item)
         const shareOptions = {
             title: item.title,
-            message: 'The video is share by noazeye app',
-            url: item.sources,
+            subject: "Noazeye Video",
+            url: item.video_URL,
             social: Share.Social.EMAIL,
         };
 
@@ -34,36 +39,43 @@ export default function PrivateVideo({ navigation }) {
         }
 
     };
-useEffect(() => {
-   dispatch(PrivateVideoApi())
-}, [])
+
+    useFocusEffect(() => {
+        // This will run when component is `focused` or mounted.
+        StatusBar.setHidden(true);
+      
+        // This will run when component is `blured` or unmounted.
+        return () => {
+          StatusBar.setHidden(false);
+        }
+      });
+
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center' }}>
-            <VideoesComponent fun={(item) => fun(item)} />
-            <View style={{ flexDirection: 'row', position: 'absolute', top: 25, width: '100%' }}>
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start', flexDirection: 'row' }}>
-                  <TouchableOpacity onPress={()=>navigation.openDrawer()}>
-                    <Image style={{ tintColor: 'white', height: 30, width: 30,marginLeft:30 }} source={require('../../assets/menu.png')} />
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flexDirection: 'row', flex: 2, justifyContent: 'center', alignItems: 'center' }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Private')}>
-                        <Text style={{ color: route !== 'public' ? 'white' : 'gray', fontSize: 20, fontWeight: '700' }}>Private</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('public')}>
-                        <Text style={{ color: route == 'public' ? 'white' : 'gray', fontSize: 20, paddingLeft: 18 }}>Public</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
-                    {/* <Text style={{ color: 'white' }}>Log out</Text> */}
-                   
+        <View style={PrivateVideoStyle.root}>
+            {/* // custom player from component folder */}
+            <VideoPlayer
+                item={item}
+                share={() => sharing(item)}
+                full={setfullScreen}
+                thumbnail={thumb}
+            />
+            {/* // player top button container close or back button with text // update fullScreen state from Video player to show control on full screen */}
+            {fullScreen ? null :
+                <View style={PrivateVideoStyle.buttonContainer}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} >
+                        <Image style={PrivateVideoStyle.back} source={require('../../assets/back.png')} />
 
-                        <Image style={{ height: 40, width: 80, marginRight: 15 }} source={require('../../assets/logo.png')} />
-                  
-                </View>
+                    </TouchableOpacity>
+                    <Text style={PrivateVideoStyle.Text} >Private Video</Text>
+                    <TouchableOpacity onPress={() => navigation.goBack()} >
 
-            </View>
-        </SafeAreaView>
+                        <Image style={PrivateVideoStyle.close} source={require('../../assets/close.png')} />
+                    </TouchableOpacity>
+
+                </View>
+            }
+        </View>
+    
 
     )
 }

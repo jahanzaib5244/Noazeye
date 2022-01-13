@@ -5,27 +5,39 @@ import { Colors, font, size } from '../../config/Utils'
 export const WelcomeStyle = StyleSheet.create({
     root: {
         flex: 1,
-        backgroundColor: Colors.black
+        backgroundColor: Colors.primary
     },
     logo: {
         flex: 1,
-        minHeight:size.height30,
+        minHeight: size.height30,
         justifyContent: 'center',
         alignItems: 'center',
+
+    },
+    picButtonContaier: {
+        flex: 1,
+    },
+    welcomePic: {
+        marginTop:40,
+        height: '40%',
+        width: '100%',
+        resizeMode: 'contain'
     },
     image: {
         height: '30%',
-        width: '60%'
+        width: '80%',
+        resizeMode:'contain'
     },
     btnContainer: {
+        elevation: 4,
         flex: 2,
-        minHeight:size.height70,
+        minHeight: size.height70,
         backgroundColor: Colors.white,
         borderTopLeftRadius: 80,
 
     },
     welcomeText: {
-        marginTop: '10%',
+      marginTop:13,
         marginHorizontal: 30,
         fontSize: font.h1,
         fontWeight: '800',
@@ -63,27 +75,30 @@ export const WelcomeStyle = StyleSheet.create({
     },
     rowBtnContainer: {
         flexDirection: 'row',
-        justifyContent:'center'
+        justifyContent: 'center',
+        bottom: 70,
+        flex: 1,
+        alignItems: 'flex-end'
 
     },
     bullet: {
         flexDirection: 'row',
         marginTop: 3,
-        width:'100%',
+        width: '100%',
         paddingLeft: 35,
-        paddingRight:30
+        paddingRight: 30
     },
     BulletImage: {
         height: 6,
         width: 6,
-        marginTop:6,
+        marginTop: 6,
         marginRight: 8
     },
     BulletText: {
         fontSize: font.h4,
         fontWeight: 'bold',
         color: Colors.black,
-        marginRight:30,
-        lineHeight:18,
+        marginHorizontal: 35,
+        lineHeight: 18,
     }
 })

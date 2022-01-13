@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     Input: {
 
         backgroundColor: Colors.white,
-        elevation: 2,
+        elevation: 3,
         borderRadius: 10,
         padding: 10,
     },
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         letterSpacing: 1
     },
     textinput: {
-
+        color: Colors.black,
         marginVertical: 5,
         marginHorizontal: 5,
         fontSize: font.h3,

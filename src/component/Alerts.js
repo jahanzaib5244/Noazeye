@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
         flex:1
     },
     alertContainer:{
-        height:size.height20,
+        // height:size.height20,
+        minHeight:size.height20,
         width:size.width70,
         borderRadius:15
     }

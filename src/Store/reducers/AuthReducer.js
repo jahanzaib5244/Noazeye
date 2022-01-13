@@ -1,13 +1,15 @@
-import {COMPANIES, FORGETPASSWORD, LOGIN, LOGOUT, PRIVATEVIDEO, PUBLICVIDEO, RETREIVEDUSER, } from "../States";
+import {COMPANIES, FORGETPASSWORD, IMAGE, LOGIN, LOGOUT, PRIVATEVIDEO, PUBLICVIDEO, RETREIVEDUSER, } from "../States";
 
 
 
 const initialState = {
-
+    loading:true,
+    offline:false,
     usertoken: null,
     Companies:[],
     PublicVideo:[],
     PrivateVideo:[],
+    ProfilePic:null,
     userData:null
 }
 
@@ -18,8 +20,9 @@ export default function AuthReducer(state = initialState, action) {
                 ...state,
                 usertoken: action.payload.usertoken,
                 PublicVideo:action.payload.PublicVideo,
-                PrivateVideo: action.payload.privateVideo,
+                PrivateVideo: action.payload.PrivateVideo,
                 userData:action.payload.data,
+                ProfilePic:action.payload.profilePic
             }
         }
         case COMPANIES: {
@@ -55,10 +58,19 @@ export default function AuthReducer(state = initialState, action) {
         case RETREIVEDUSER: {
             return {
                 ...state,
+                loading:action.payload.loading,
+                offline:action.payload.offline,
                 usertoken: action.payload.usertoken,
                 PublicVideo: action.payload.PublicVideo,
                 PrivateVideo: action.payload.privateVideo,
-                userData:action.payload.data
+                userData:action.payload.data,
+                ProfilePic:action.payload.profilePic
+            }
+        }
+        case IMAGE: {
+            return {
+                ...state,
+                ProfilePic:action.payload
             }
         }
     

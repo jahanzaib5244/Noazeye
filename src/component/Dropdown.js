@@ -109,8 +109,9 @@ const styles = StyleSheet.create({
     Input: {
         marginHorizontal: 30,
         // marginBottom: 28,
-        backgroundColor: Colors.white,
-        elevation: 2,
+        backgroundColor: Colors.primary,
+        elevation: 6,
+        shadowColor:Colors.primary,
         borderRadius: 10,
         padding: 10,
     },

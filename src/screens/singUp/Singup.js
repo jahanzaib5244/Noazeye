@@ -11,6 +11,7 @@ import Passwordinput from '../../component/PasswordInput'
 import Dropdown, { LoadingBussiness } from '../../component/Dropdown'
 import AppButton, { LoadingButton } from '../../component/AppButton'
 import { listCompanies, RegisterApi } from '../../Store/actions/AuthActions';
+import { SuccessAlerts } from '../../component/Alerts';
 
 const validationschema = Yup.object().shape({
     Email: Yup.string().required().email().label("Email"),
@@ -27,30 +28,43 @@ const validationschema = Yup.object().shape({
 export default function Singup({ navigation }) {
 
     const dispatch = useDispatch()
-    const [selected, setselected] = useState('')
+    const [selected, setselected] = useState(null)
     const [getCompanies, setgetCompanies] = useState(false)
     const [loading, setloading] = useState(false)
+    const [show, setshow] = useState(false)
+    const [alertMsg, setalertMsg] = useState('')
     const [companyerror, setcompanyerror] = useState(null)
+    const [invalid, setinvalid] = useState(null)
     console.log(selected)
     const SelectedItem = (e) => {
-        console.log('clicked', e)
         setselected(e)
+        if (selected !== null) {
+            setcompanyerror(null)
+        }
     }
 
     useEffect(() => {
         console.log('useeffect')
         dispatch(listCompanies(setgetCompanies))
+        return () => {
+            setloading(false)
+        }
+        
     }, [])
 
 
     const ctaSignUP = (val) => {
-        setcompanyerror('')
-         if(selected !== ''){
-             dispatch(RegisterApi(setloading,val.ConfirmPassword,val.Email,val.Password,val.firstName,val.lastName,val.position,val.userName,selected))
+        setcompanyerror(null)
+        if (selected !== '') {
+            dispatch(RegisterApi(setinvalid, setshow, setalertMsg, setloading, val.ConfirmPassword, val.Email, val.Password, val.firstName, val.lastName, val.position, val.userName, selected))
 
-         }else{
+        } else {
             setcompanyerror("Company is require field")
-         }
+        }
+    }
+
+    const confirm = () => {
+        navigation.goBack()
     }
 
     return (
@@ -60,7 +74,7 @@ export default function Singup({ navigation }) {
                 <TouchableOpacity style={SingupStyle.back} onPress={() => navigation.goBack()}>
                     <Image style={SingupStyle.image} source={require('../../assets/back.png')} />
                 </TouchableOpacity>
-                <Text style={SingupStyle.singupText}>Sing Up</Text>
+                <Text style={SingupStyle.singupText}>Sign up</Text>
             </View>
             <Formik
                 initialValues={{ Email: '', Password: '', ConfirmPassword: '', firstName: '', lastName: '', position: '', userName: '' }}
@@ -96,7 +110,7 @@ export default function Singup({ navigation }) {
 
                                 <Dropdown customstyle={SingupStyle.drop} select={(e) => SelectedItem(e)} />
                             }
-                            {companyerror !== null ? <Text style={SingupStyle.error}>{companyerror}</Text> : null}
+                            {companyerror && <Text style={SingupStyle.error}>{companyerror}</Text>}
                             <Input
                                 onchange={handleChange("Email")}
                                 inputstyle={SingupStyle.email}
@@ -104,7 +118,7 @@ export default function Singup({ navigation }) {
                                 blur={() => setFieldTouched("Email")}
                                 placeholder='Email...'
                             />
-                            {touched.Email && errors.Email ? <Text style={SingupStyle.error}>{errors.Email}</Text> :null}
+                            {touched.Email && errors.Email ? <Text style={SingupStyle.error}>{errors.Email}</Text> : null}
                             <View style={SingupStyle.username}>
                                 <Passwordinput
                                     onchange={handleChange("Password")}
@@ -123,7 +137,7 @@ export default function Singup({ navigation }) {
                                 />
 
                             </View>
-                            {touched.ConfirmPassword && errors.ConfirmPassword ? <Text style={SingupStyle.error}>{errors.ConfirmPassword}</Text> : null }
+                            {touched.ConfirmPassword && errors.ConfirmPassword ? <Text style={SingupStyle.error}>{errors.ConfirmPassword}</Text> : null}
                             <View style={SingupStyle.username}>
                                 <Input
                                     onchange={handleChange("position")}
@@ -144,17 +158,25 @@ export default function Singup({ navigation }) {
                             {touched.userName && errors.userName ? <Text style={SingupStyle.error}>{errors.userName}</Text> : null}
 
                             {touched.position && errors.position ? <Text style={SingupStyle.error}>{errors.position}</Text> : null}
+                            {invalid && <Text style={SingupStyle.error}>{invalid}</Text>}
                             {/* // button */}
                             {loading ?
                                 <LoadingButton BTstyle={SingupStyle.btn} />
                                 :
-                                <AppButton onPress={handleSubmit} name='Sing Up' BTstyle={SingupStyle.btn} />
+                                <AppButton onPress={handleSubmit} name='Sign up' BTstyle={SingupStyle.btn} />
                             }
-
+                            <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', }}>
+                                <View style={{ flexDirection: 'row', bottom: 20 }}>
+                                    <Text style={{paddingVertical:10,color:'gray'}}>Already have an account ?</Text>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Login')} style={{paddingVertical:10, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 5 }}><Text style={{ borderBottomWidth: 1, color: 'black' }}>Login</Text></TouchableOpacity>
+                                </View>
+                            </View>
                         </View>
                     </>
                 )}
             </Formik>
+            <SuccessAlerts title='Sign up' msg={alertMsg} showAlert={show} confirm={() => confirm()} />
+
         </ScrollView>
     )
 }

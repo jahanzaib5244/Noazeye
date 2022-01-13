@@ -5,7 +5,7 @@ import { Colors, font, size } from '../../config/Utils';
 export const SingupStyle = StyleSheet.create({
     root: {
         flexGrow: 1,
-        backgroundColor: Colors.black
+        backgroundColor: Colors.primary
     },
     uppercontainer: {
         flex: 1,
@@ -16,25 +16,27 @@ export const SingupStyle = StyleSheet.create({
     },
     InputFieldContainer: {
         flex: 8,
+        elevation:4,
         minHeight: size.height80,
         backgroundColor: Colors.white,
         borderTopLeftRadius: 80
     },
     image: {
-        tintColor: Colors.white,
+        tintColor: Colors.black,
         height: 25,
         width: 25,
 
     },
     back: {
         position: 'absolute',
-        top: 30,
-        left: 25,
+        top: 0,
+        left: 0,
         height: 25,
         width: 40,
+        padding:30
     },
     singupText: {
-        color: Colors.white,
+        color: Colors.black,
         fontSize: font.h1,
         fontWeight: '700'
     },
@@ -80,7 +82,9 @@ export const SingupStyle = StyleSheet.create({
     error: {
         color: Colors.danger,
         paddingLeft: 40,
-        marginTop: 0
+        marginTop: 5,
+        paddingRight:30,
+        
     },
     drop:{
         marginTop:10,

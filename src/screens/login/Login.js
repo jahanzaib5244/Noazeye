@@ -17,7 +17,7 @@ const validationschema = Yup.object().shape({
 
 
 export default function Login({ navigation }) {
-    const [isinvalid, loading, doSigninUser, setsecureText, secureText] = Uselogin()
+    const [isinvalid, loading, doSigninUser, ] = Uselogin()
     return (
         <ScrollView contentContainerStyle={LoginStyle.root}>
             <View style={LoginStyle.logo}>
@@ -63,6 +63,12 @@ export default function Login({ navigation }) {
                             
                         </>)}
                 </Formik>
+                <View style={{flex:1,justifyContent:'flex-end',alignItems:'center',}}>
+                    <View style={{flexDirection:'row',bottom:20}}> 
+                    <Text style={{paddingVertical:10,color:'gray'}}>Don't have any account?  </Text>
+                    <TouchableOpacity onPress={()=>navigation.navigate('Singup')} style={{justifyContent:'center',alignItems:'center',paddingHorizontal:5}}><Text style={{borderBottomWidth:1,color:'black'}}>Signup</Text></TouchableOpacity>
+                    </View>
+                </View>
             </View>
         </ScrollView>
     )

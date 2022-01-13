@@ -6,7 +6,7 @@ export  const UpdatePasswordStyle = StyleSheet.create({
    root:{
        flexGrow:1,
        minHeight:size.height100,
-       backgroundColor:Colors.black
+       backgroundColor:Colors.primary
    },
    upperContaier:{
        flex:0,
@@ -14,6 +14,7 @@ export  const UpdatePasswordStyle = StyleSheet.create({
    },
    lowerContainer:{
        flex:9,
+       elevation:4,
        backgroundColor:Colors.white,
        borderTopLeftRadius:80
    },

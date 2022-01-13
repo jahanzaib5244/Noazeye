@@ -17,6 +17,7 @@ export default function Passwordinput({ name, placeholder, inputstyle, onchange,
                 onBlur={(e) => blur(e)}
                 autoCapitalize="none"
                 numberOfLines={1}
+                placeholderTextColor="gray" 
             />
             <TouchableOpacity onPress={()=>setshow(!show)}>
                 {show ? 
@@ -34,7 +35,8 @@ export default function Passwordinput({ name, placeholder, inputstyle, onchange,
 const styles = StyleSheet.create({
     Input: {
         backgroundColor: Colors.white,
-        elevation: 2,
+        elevation: 3,
+        shadowColor:Colors.primary,
         borderRadius: 10,
         padding: 10,
     },
@@ -46,6 +48,7 @@ const styles = StyleSheet.create({
         letterSpacing: 1
     },
     textinput: {
+        color: Colors.black,
        flex:1,
         marginVertical: 5,
         marginHorizontal: 5,
